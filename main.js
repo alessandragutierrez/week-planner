@@ -21,7 +21,7 @@ $modal.addEventListener('click', closeModal);
 function submitEntry(event) {
   event.preventDefault();
   saveEntry(event);
-  addNew();
+  checkEmpty();
 }
 
 function saveEntry(event) {
@@ -45,7 +45,7 @@ function closeModal(event) {
 
 // }
 
-function renderEntry(newEntry) {
+function renderEntryTime(newEntry) {
 
   var $tr = document.createElement('tr');
   var $td = document.createElement('td');
@@ -58,16 +58,50 @@ function renderEntry(newEntry) {
   return $tr;
 }
 
+function renderEntryDesc(newEntry) {
+
+  var $tr = document.createElement('tr');
+  var $td = document.createElement('td');
+
+  $td.textContent = newEntry.desc;
+  $tr.appendChild($td);
+
+  // $td.textContent =
+
+  return $tr;
+}
+
 function appendToPage() {
   for (var i = 0; i < data.entries.length; i++) {
-    var entriesValue = renderEntry(data.entries[i]);
+    var entriesValue = renderEntryTime(data.entries[i]);
     $tableTime.lastElementChild.appendChild(entriesValue);
+    entriesValue = renderEntryDesc(data.entries[i]);
+    $tableDesc.lastElementChild.appendChild(entriesValue);
   }
 }
 
 window.addEventListener('DOMContentLoaded', appendToPage);
 
 function addNew() {
-  var newEntry = renderEntry(data.entries[data.entries.length - 1]);
+  var newEntry = renderEntryTime(data.entries[data.entries.length - 1]);
   $tableTime.lastElementChild.appendChild(newEntry);
+  newEntry = renderEntryDesc(data.entries[data.entries.length - 1]);
+  $tableDesc.lastElementChild.appendChild(newEntry);
 }
+
+function checkEmpty() {
+  var $td = document.querySelectorAll('td');
+  for (i = 0; i < $td.length; i++) {
+    if ($td[i].innerText !== '') {
+      addNew();
+    } else {
+      console.log('hi');
+    }
+  }
+}
+
+// check if all the <td>s are empty
+// query select all the table names
+// loop through the node list and check if innertext of the <td>s are empty,
+// if not empty, run the functions from earlier. If empty, update the test value
+// of the <td>s instead of creating new ones =-)
