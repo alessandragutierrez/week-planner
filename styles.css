@@ -26,6 +26,10 @@
   text-align: center;
 }
 
+.column-wrap {
+  flex-wrap: wrap;
+}
+
 .selects {
   text-align: left;
   width: 100%;
@@ -58,6 +62,7 @@
 .add-button {
   padding: 8px 25px;
   box-shadow: 3px 3px 3px;
+  background-color: transparent;
 }
 
 .add-button:hover,
@@ -88,8 +93,25 @@
 
 .schedule {
   text-align: left;
+  border: 2px solid black;
+  margin: 0;
+}
+
+.time {
+  border-right: none;
 }
 
 tr:nth-child(odd) {
   background-color: #f2f2f2;
+}
+
+.day-button {
+  width: 6rem;
+  height: 6rem;
+  background-color: transparent;
+}
+
+.space-between {
+  display: flex;
+  justify-content: space-around;
 }
