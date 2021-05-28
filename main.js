@@ -5,6 +5,7 @@ var $modal = document.querySelector('.modal');
 var $entryForm = document.querySelector('.entry-form');
 var $tableTime = document.querySelector('.time');
 var $tableDesc = document.querySelector('.desc');
+var i;
 
 $entryButton.addEventListener('click', openModal);
 function openModal(event) {
@@ -15,10 +16,12 @@ function openModal(event) {
 }
 
 $entryForm.addEventListener('submit', submitEntry);
+$modal.addEventListener('click', closeModal);
 
 function submitEntry(event) {
+  event.preventDefault();
   saveEntry(event);
-  closeModal(event);
+  addNew();
 }
 
 function saveEntry(event) {
@@ -42,15 +45,29 @@ function closeModal(event) {
 
 // }
 
-function renderEntry() {
+function renderEntry(newEntry) {
+
   var $tr = document.createElement('tr');
   var $td = document.createElement('td');
 
+  $td.textContent = newEntry.time;
   $tr.appendChild($td);
 
-  $td.textContent =
+  // $td.textContent =
+
+  return $tr;
 }
 
-function appendToTable() {
-  $table.
+function appendToPage() {
+  for (var i = 0; i < data.entries.length; i++) {
+    var entriesValue = renderEntry(data.entries[i]);
+    $tableTime.lastElementChild.appendChild(entriesValue);
+  }
+}
+
+window.addEventListener('DOMContentLoaded', appendToPage);
+
+function addNew() {
+  var newEntry = renderEntry(data.entries[data.entries.length - 1]);
+  $tableTime.lastElementChild.appendChild(newEntry);
 }
