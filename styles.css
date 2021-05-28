@@ -21,6 +21,10 @@
   width: 100%;
 }
 
+tr {
+  height: 2rem;
+}
+
 .column-full {
   width: 100%;
   text-align: center;
@@ -95,14 +99,24 @@
   text-align: left;
   border: 2px solid black;
   margin: 0;
+  empty-cells: show;
 }
 
 .time {
   border-right: none;
+  width: 20%;
+}
+
+.desc {
+  width: 50%;
 }
 
 tr:nth-child(odd) {
   background-color: #f2f2f2;
+}
+
+tr > th {
+  background-color: #ccc;
 }
 
 .day-button {
