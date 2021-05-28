@@ -23,6 +23,25 @@
   margin: 50px 0;
 }
 
+.selects {
+  text-align: left;
+  width: 100%;
+  margin: 0;
+}
+
+.textArea {
+  width: 100%;
+  margin: 0;
+}
+
+.submit-container {
+  text-align: right;
+}
+
+.column-90 {
+  width: 90%;
+}
+
 .center {
   justify-content: center;
 }
@@ -51,7 +70,7 @@
 
 .modal-box {
   background-color: white;
-  width: 100px;
-  height: 100px;
+  width: 50%;
+  height: 20%;
   text-align: center;
 }
