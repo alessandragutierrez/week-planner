@@ -1,5 +1,6 @@
 var $entryButton = document.querySelector('.add-button');
 var $modal = document.querySelector('.modal');
+var $submitButton = document.querySelector('.submit-button');
 
 $entryButton.addEventListener('click', openModal);
 
