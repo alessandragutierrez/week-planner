@@ -2,20 +2,11 @@
 
 var $entryButton = document.querySelector('.add-button');
 var $modal = document.querySelector('.modal');
-var $submitButton = document.querySelector('.submit-button');
+var $entryForm = document.querySelector('.entry-form');
+var $tableTime = document.querySelector('.time');
+var $tableDesc = document.querySelector('.desc');
 
 $entryButton.addEventListener('click', openModal);
-$submitButton.addEventListener('click', submitEntry);
-
-function submitEntry(event) {
-  saveEntry(event);
-  closeModal(event);
-}
-
-// function addToSchedule(event) {
-
-// }
-
 function openModal(event) {
   if (event.target.matches('.add-button') !== true) {
     return;
@@ -23,12 +14,20 @@ function openModal(event) {
   $modal.classList.remove('hidden');
 }
 
+$entryForm.addEventListener('submit', submitEntry);
+
+function submitEntry(event) {
+  saveEntry(event);
+  closeModal(event);
+}
+
 function saveEntry(event) {
   var newEntry = {
-    day: null,
-    time: null,
-    desc: null
+    day: $entryForm.elements.day.value,
+    time: $entryForm.elements.time.value,
+    desc: $entryForm.elements.desc.value
   };
+
   data.entries.push(newEntry);
 }
 
@@ -37,4 +36,21 @@ function closeModal(event) {
     return;
   }
   $modal.classList.add('hidden');
+}
+
+// function addToSchedule(event) {
+
+// }
+
+function renderEntry() {
+  var $tr = document.createElement('tr');
+  var $td = document.createElement('td');
+
+  $tr.appendChild($td);
+
+  $td.textContent =
+}
+
+function appendToTable() {
+  $table.
 }
