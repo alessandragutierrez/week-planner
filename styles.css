@@ -12,6 +12,10 @@
   width: 900px;
 }
 
+.margin-50 {
+  margin: 50px 0;
+}
+
 .row {
   display: flex;
   width: 100%;
@@ -20,13 +24,13 @@
 .column-full {
   width: 100%;
   text-align: center;
-  margin: 50px 0;
 }
 
 .selects {
   text-align: left;
   width: 100%;
   margin: 0;
+  padding: 10px 0;
 }
 
 .textArea {
@@ -34,8 +38,13 @@
   margin: 0;
 }
 
+.margin-right {
+  margin-right: 20px;
+}
+
 .submit-container {
   text-align: right;
+  padding: 10px 0;
 }
 
 .column-90 {
@@ -73,4 +82,5 @@
   width: 50%;
   height: 20%;
   text-align: center;
+  padding: 10px;
 }
