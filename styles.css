@@ -70,7 +70,8 @@ tr {
 }
 
 .add-button:hover,
-.submit-button:hover {
+.submit-button:hover,
+.day-button:hover {
   cursor: pointer;
 }
 
