@@ -1,3 +1,5 @@
+/* global data */
+
 var $entryButton = document.querySelector('.add-button');
 var $modal = document.querySelector('.modal');
 var $submitButton = document.querySelector('.submit-button');
@@ -9,4 +11,13 @@ function openModal(event) {
     return;
   }
   $modal.classList.remove('hidden');
+}
+
+$submitButton.addEventListener('click', closeModal);
+
+function closeModal(event) {
+  if (event.target.matches('.submit-button') !== true) {
+    return;
+  }
+  $modal.classList.add('hidden');
 }

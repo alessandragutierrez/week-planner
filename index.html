@@ -7,15 +7,53 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div class="container">
+  <div date-view="home-page" class="container">
     <div class="row center">
       <div class="column-full center margin-50">
         <h1>Weekly Planner</h1>
       </div>
     </div>
+    <div class="row">
+      <div class="column-full">
+        <button class="day-button">Sunday</button>
+        <button class="day-button">Monday</button>
+        <button class="day-button">Tuesday</button>
+        <button class="day-button">Wednesday</button>
+        <button class="day-button">Thursday</button>
+        <button class="day-button">Friday</button>
+        <button class="day-button">Saturday</button>
+      </div>
+    </div>
     <div class="row center">
       <div class="column-full center margin-50">
         <button class="add-button">Add Entry</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="column-full">
+        <h2>Scheduled Events for Monday</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="column-full">
+        <table class="schedule">
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>10:00</td>
+              <td>Practice Algorithms</td>
+            </tr>
+            <tr>
+              <td>12:00</td>
+              <td>Go for a run</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
@@ -29,10 +67,26 @@
       <div class="row">
         <div class="column-full selects margin-right">
           <select name="" id="">
-            <option value="">Day of Week</option>
+            <option value="day of week">Day of Week</option>
+            <option value="monday">Monday</option>
+            <option value="tuesday">Tuesday</option>
+            <option value="wednesday">Wednesday</option>
+            <option value="thursday">Thursday</option>
+            <option value="friday">Friday</option>
+            <option value="saturday">Saturday</option>
+            <option value="sunday">Sunday</option>
           </select>
           <select name="" id="">
-            <option value="">Time</option>
+            <option value="time">Time</option>
+            <option value="9AM">9 AM</option>
+            <option value="10AM">10 AM</option>
+            <option value="11AM">11 AM</option>
+            <option value="12PM">12 PM</option>
+            <option value="1PM">1 PM</option>
+            <option value="2PM">2 PM</option>
+            <option value="3PM">3 PM</option>
+            <option value="4PM">4 PM</option>
+            <option value="5PM">5 PM</option>
           </select>
         </div>
       </div>
@@ -48,6 +102,7 @@
       </div>
     </div>
   </div>
+  <script src="data.js"></script>
   <script src="main.js"></script>
 </body>
 </html>
