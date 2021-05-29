@@ -21,6 +21,7 @@ $entryForm.addEventListener('submit', submitEntry);
 $modal.addEventListener('click', closeModal);
 
 function submitEntry(event) {
+  // debugger;
   event.preventDefault();
   saveEntry(event);
   addNew();
@@ -33,7 +34,13 @@ function saveEntry(event) {
     desc: $entryForm.elements.desc.value
   };
 
-  data.entries.push(newEntry);
+  for (var key in data.entries) {
+    // if (!newEntry.day) return;
+    if (newEntry.day === key) {
+      data.entries[key].push(newEntry);
+    }
+    console.log(newEntry);
+  }
 }
 
 function closeModal(event) {
@@ -48,14 +55,11 @@ function closeModal(event) {
 // }
 
 function renderEntryTime(newEntry) {
-
   var $tr = document.createElement('tr');
   var $td = document.createElement('td');
 
   $td.textContent = newEntry.time;
   $tr.appendChild($td);
-
-  // $td.textContent =
 
   return $tr;
 }
@@ -68,26 +72,25 @@ function renderEntryDesc(newEntry) {
   $td.textContent = newEntry.desc;
   $tr.appendChild($td);
 
-  // $td.textContent =
-
   return $tr;
 }
 
 function appendToPage() {
-  for (var i = 0; i < data.entries.length; i++) {
-    var entriesValue = renderEntryTime(data.entries[i]);
+  for (var i = 0; i < data.entries.monday.length; i++) {
+    var entriesValue = renderEntryTime(data.entries.monday[i]);
     $tableTime.lastElementChild.appendChild(entriesValue);
-    entriesValue = renderEntryDesc(data.entries[i]);
+    entriesValue = renderEntryDesc(data.entries.monday[i]);
     $tableDesc.lastElementChild.appendChild(entriesValue);
   }
+
 }
 
 window.addEventListener('DOMContentLoaded', appendToPage);
 
 function addNew() {
-  var newEntry = renderEntryTime(data.entries[data.entries.length - 1]);
+  var newEntry = renderEntryTime(data.entries.monday[data.entries.monday.length - 1]);
   $tableTime.lastElementChild.appendChild(newEntry);
-  newEntry = renderEntryDesc(data.entries[data.entries.length - 1]);
+  newEntry = renderEntryDesc(data.entries.monday[data.entries.monday.length - 1]);
   $tableDesc.lastElementChild.appendChild(newEntry);
 }
 
@@ -121,4 +124,6 @@ function changeDay(event) {
   }
   capitalizeFirstLetter();
   $dayOfWeek.textContent = ('Schedule events for ' + dayCap);
+
+  data.currentDay = day;
 }

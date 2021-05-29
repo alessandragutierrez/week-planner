@@ -1,9 +1,18 @@
 /* exported data */
 var data = {
-  entries: [],
+  entries: {
+    sunday: [],
+    monday: [],
+    tuesday: [],
+    wednesday: [],
+    thursday: [],
+    friday: [],
+    saturday: []
+  },
   edit: null,
   nextEntryId: 1,
-  view: 'home-page'
+  view: 'home-page',
+  currentDay: null
 };
 
 var previousEntriesJSON = localStorage.getItem('calendar-storage');
