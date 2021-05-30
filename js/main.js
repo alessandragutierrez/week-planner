@@ -3,10 +3,9 @@
 var $addButton = document.querySelector('.add-button');
 var $modal = document.querySelector('.modal');
 var $entryForm = $modal.firstElementChild;
-var $tbody = document.querySelector('tbody');
 var $dayTitle = document.querySelector('.day-title');
-//
 var $tables = document.querySelectorAll('table');
+var i;
 
 document.addEventListener('click', changeDay);
 $addButton.addEventListener('click', openModal);
@@ -30,7 +29,7 @@ function changeDayTitle(event) {
 
 function changeTable(event) {
   var day = event.target.getAttribute('data-day');
-  for (var i = 0; i < $tables.length; i++) {
+  for (i = 0; i < $tables.length; i++) {
     if ($tables[i].getAttribute('data-day') !== day) {
       $tables[i].classList.add('hidden');
     } else {
@@ -96,21 +95,15 @@ function renderEntry(newEntry) {
   return $tr;
 }
 
-// function addEntriesToPage() {
-//   for (var key in data.entries) {
-//     for (var i = 0; i < data.entries[key].length; i++) {
-//       var entryValues = renderEntry(data.entries[key][i]);
-//       $tbody.appendChild(entryValues);
-//     }
-//   }
-// }
-
 function addEntriesToPage() {
   for (var key in data.entries) {
-    if (key === data.view) {
-      for (var i = 0; i < data.entries[key].length; i++) {
-        var entryValues = renderEntry(data.entries[key][i]);
-        $tbody.appendChild(entryValues);
+    for (i = 0; i < data.entries[key].length; i++) {
+      for (var j = 0; j < $tables.length; j++) {
+        var day = $tables[j].getAttribute('data-day');
+        if (key === day) {
+          var entryValues = renderEntry(data.entries[key][i]);
+          $tables[j].lastElementChild.appendChild(entryValues);
+        }
       }
     }
   }
