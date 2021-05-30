@@ -2,29 +2,24 @@
 
 var $addButton = document.querySelector('.add-button');
 var $modal = document.querySelector('.modal');
-var $entryForm = $modal.querySelector('.entry-form');
+var $entryForm = $modal.firstElementChild;
 
 $addButton.addEventListener('click', openModal);
 $entryForm.addEventListener('submit', submitEntry);
 
 function openModal(event) {
-  if (event.target.matches('.add-button') !== true) {
-    return;
-  }
   $modal.classList.remove('hidden');
 }
-
-function submitEntry(event) {
-  event.preventDefault();
-  closeModal();
-  saveEntry();
-  data.nextEntryId = data.nextEntryId + 1;
-}
-
 function closeModal() {
   $modal.classList.add('hidden');
 }
 
+function submitEntry(event) {
+  event.preventDefault();
+  saveEntry();
+  data.nextEntryId = data.nextEntryId + 1;
+  closeModal();
+}
 function saveEntry() {
   var newEntry = {
     day: $entryForm.elements.day.value,
@@ -35,7 +30,6 @@ function saveEntry() {
   };
   findDay(newEntry);
 }
-
 function findDay(newEntry) {
   for (var key in data.entries) {
     if (newEntry.day === key) {

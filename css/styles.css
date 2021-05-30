@@ -12,10 +12,6 @@ button {
   margin-bottom: 7rem;
 }
 
-.center {
-  text-align: center;
-}
-
 .add-button {
   padding: 6px 30px;
   box-shadow: 3px 3px 3px gray;
@@ -77,6 +73,10 @@ button {
 select:focus {
   outline-color: #555b6e;
   border: 2px solid;
+}
+
+.center {
+  text-align: center;
 }
 
 /* color pallete:
