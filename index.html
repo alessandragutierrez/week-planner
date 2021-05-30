@@ -17,7 +17,7 @@
       </div>
     </div>
     <div class="row">
-      <div class="column-full day-button-container margin-bottom">
+      <div class="column-full day-button-container center margin-bottom">
         <button class="day-button">Monday</button>
         <button class="day-button">Tuesday</button>
         <button class="day-button">Wednesday</button>
@@ -32,6 +32,33 @@
         <button class="add-button">Add Entry</button>
       </div>
     </div>
+    <div class="row">
+      <div class="column-full">
+        <h2 class="schedule-day center margin-bottom">Scheduled events for Monday</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="column-full">
+        <table>
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>9:00 AM</td>
+              <td>walk the dog</td>
+            </tr>
+            <tr>
+              <td>10:00 AM</td>
+              <td>walk the cat</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
   </div>
   <div class="modal hidden">
     <form class="modal-box">
@@ -42,7 +69,7 @@
       </div>
       <div class="row">
         <div class="column-full selects">
-          <select name="day">
+          <select name="day" class="select">
             <option value="monday">Monday</option>
             <option value="tuesday">Tuesday</option>
             <option value="wednesday">Wednesday</option>
@@ -51,7 +78,7 @@
             <option value="saturday">Saturday</option>
             <option value="sunday">Sunday</option>
           </select>
-          <select name="hour">
+          <select name="hour" class="select">
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
