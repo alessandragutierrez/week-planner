@@ -4,10 +4,21 @@ var $addButton = document.querySelector('.add-button');
 var $modal = document.querySelector('.modal');
 var $entryForm = $modal.firstElementChild;
 var $tbody = document.querySelector('tbody');
+var $scheduleDay = document.querySelector('.schedule-day');
 
+document.addEventListener('click', changeDay);
 $addButton.addEventListener('click', openModal);
 $modal.addEventListener('click', cancelOpenModal);
 $entryForm.addEventListener('submit', submitEntry);
+
+function changeDay(event) {
+  if (event.target.matches('.day-button') !== true) {
+    return;
+  }
+  var day = event.target.getAttribute('data-day');
+  var dayCap = day.charAt(0).toUpperCase() + day.slice(1);
+  $scheduleDay.textContent = 'Scheduled events for ' + dayCap;
+}
 
 function openModal(event) {
   $modal.classList.remove('hidden');
@@ -19,15 +30,11 @@ function cancelOpenModal(event) {
   }
 }
 
-function closeModal() {
-  $modal.classList.add('hidden');
-}
-
 function submitEntry(event) {
   event.preventDefault();
   saveEntry();
-  data.nextEntryId = data.nextEntryId + 1;
   closeModal();
+  data.nextEntryId = data.nextEntryId + 1;
 }
 function saveEntry() {
   var newEntry = {
@@ -45,6 +52,9 @@ function findDay(newEntry) {
       data.entries[key].push(newEntry);
     }
   }
+}
+function closeModal() {
+  $modal.classList.add('hidden');
 }
 
 //
