@@ -5,6 +5,7 @@ var $modal = document.querySelector('.modal');
 var $entryForm = $modal.firstElementChild;
 var $dayTitle = document.querySelector('.day-title');
 var $tables = document.querySelectorAll('table');
+var entriesOrganized;
 var i;
 
 document.addEventListener('click', changeDay);
@@ -86,7 +87,7 @@ function renderEntry(newEntry) {
   var $tdTime = document.createElement('td');
   var $tdDesc = document.createElement('td');
 
-  $tdTime.textContent = newEntry.hour + ' ' + newEntry.AMPM;
+  $tdTime.textContent = newEntry.hour + ' ' + newEntry.AMPM.toUpperCase();
   $tdDesc.textContent = newEntry.desc;
 
   $tr.appendChild($tdTime);
@@ -97,14 +98,57 @@ function renderEntry(newEntry) {
 
 function addEntriesToPage() {
   for (var key in data.entries) {
-    for (i = 0; i < data.entries[key].length; i++) {
-      for (var j = 0; j < $tables.length; j++) {
-        var day = $tables[j].getAttribute('data-day');
-        if (key === day) {
-          var entryValues = renderEntry(data.entries[key][i]);
+    for (var j = 0; j < $tables.length; j++) {
+      var day = $tables[j].getAttribute('data-day');
+      if (key === day) {
+        chronologicallyOrganizeEntries(key);
+        for (i = 0; i < entriesOrganized.length; i++) {
+          var entryValues = renderEntry(entriesOrganized[i]);
           $tables[j].lastElementChild.appendChild(entryValues);
         }
       }
     }
   }
+}
+
+function chronologicallyOrganizeEntries(key) {
+  var amEntries = [];
+  var pmEntries = [];
+  for (i = 0; i < data.entries[key].length; i++) {
+    if (data.entries[key][i].AMPM === 'am') {
+      amEntries.push(data.entries[key][i]);
+    } else {
+      pmEntries.push(data.entries[key][i]);
+    }
+  }
+  entriesOrganized = [];
+  sort(amEntries);
+  sort(pmEntries);
+  if (amEntries[0] !== undefined) {
+    for (i = 0; i < amEntries.length; i++) {
+      entriesOrganized.push(amEntries[i]);
+    }
+  }
+  if (pmEntries[0] !== undefined) {
+    for (i = 0; i < pmEntries.length; i++) {
+      entriesOrganized.push(pmEntries[i]);
+    }
+  }
+}
+
+function sort(arrayX) {
+  var arrayY = arrayX;
+  for (i = 0; i < arrayX.length; i++) {
+    for (var j = 1; j < arrayY.length; j++) {
+      if (parseInt(arrayX[i].hour) < parseInt(arrayY[j].hour)) {
+        var value = arrayY[j];
+        arrayY[j] = arrayX[i];
+        arrayX[i] = value;
+      }
+    }
+  }
+  value = arrayX[0];
+  arrayX.splice(0, 1);
+  arrayX.push(value);
+  return arrayX;
 }
