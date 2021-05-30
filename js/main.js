@@ -5,11 +5,19 @@ var $modal = document.querySelector('.modal');
 var $entryForm = $modal.firstElementChild;
 
 $addButton.addEventListener('click', openModal);
+$modal.addEventListener('click', cancelOpenModal);
 $entryForm.addEventListener('submit', submitEntry);
 
 function openModal(event) {
   $modal.classList.remove('hidden');
 }
+
+function cancelOpenModal(event) {
+  if (event.target.matches('.modal') === true) {
+    $modal.classList.add('hidden');
+  }
+}
+
 function closeModal() {
   $modal.classList.add('hidden');
 }
