@@ -4,7 +4,9 @@ var $addButton = document.querySelector('.add-button');
 var $modal = document.querySelector('.modal');
 var $entryForm = $modal.firstElementChild;
 var $tbody = document.querySelector('tbody');
-var $scheduleDay = document.querySelector('.schedule-day');
+var $dayTitle = document.querySelector('.day-title');
+//
+var $tables = document.querySelectorAll('table');
 
 document.addEventListener('click', changeDay);
 $addButton.addEventListener('click', openModal);
@@ -15,10 +17,26 @@ function changeDay(event) {
   if (event.target.matches('.day-button') !== true) {
     return;
   }
+  changeDayTitle(event);
+  changeTable(event);
+}
+
+function changeDayTitle(event) {
   var day = event.target.getAttribute('data-day');
   data.view = day;
   var dayCap = day.charAt(0).toUpperCase() + day.slice(1);
-  $scheduleDay.textContent = 'Scheduled events for ' + dayCap;
+  $dayTitle.textContent = 'Scheduled events for ' + dayCap;
+}
+
+function changeTable(event) {
+  var day = event.target.getAttribute('data-day');
+  for (var i = 0; i < $tables.length; i++) {
+    if ($tables[i].getAttribute('data-day') !== day) {
+      $tables[i].classList.add('hidden');
+    } else {
+      $tables[i].classList.remove('hidden');
+    }
+  }
 }
 
 function openModal(event) {
@@ -78,12 +96,22 @@ function renderEntry(newEntry) {
   return $tr;
 }
 
+// function addEntriesToPage() {
+//   for (var key in data.entries) {
+//     for (var i = 0; i < data.entries[key].length; i++) {
+//       var entryValues = renderEntry(data.entries[key][i]);
+//       $tbody.appendChild(entryValues);
+//     }
+//   }
+// }
+
 function addEntriesToPage() {
   for (var key in data.entries) {
-    for (var i = 0; i < data.entries[key].length; i++) {
-      var entryValues = renderEntry(data.entries[key][i]);
-      $tbody.appendChild(entryValues);
+    if (key === data.view) {
+      for (var i = 0; i < data.entries[key].length; i++) {
+        var entryValues = renderEntry(data.entries[key][i]);
+        $tbody.appendChild(entryValues);
+      }
     }
   }
-
 }
