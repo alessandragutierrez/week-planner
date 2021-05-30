@@ -1,11 +1,14 @@
 body {
   font-family: 'Josefin Sans', sans-serif;
-
-  /* background-color: #eef1ef; */
-  background-color: #a9b4c2;
+  background-color: #faf9f9;
 }
 
-.column-full {
+button {
+  background-color: #bee3db;
+  border-radius: 5px;
+}
+
+.title {
   margin-bottom: 7rem;
 }
 
@@ -14,22 +17,78 @@ body {
 }
 
 .add-button {
-  background-color: white;
   padding: 6px 30px;
   box-shadow: 3px 3px 3px gray;
-  border-radius: 5px;
   font-size: 16px;
 }
 
-.add-button:hover {
+.modal {
+  background-color: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  height: 100vh;
+  width: 100%;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-box {
+  background-color: white;
+  height: 300px;
+  width: 600px;
+  text-align: center;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.selects {
+  text-align: left;
+}
+
+.desc-box {
+  width: 100%;
+  font-family: sans-serif;
+  padding: 8px 10px;
+  border-radius: 5px;
+  padding-bottom: 50px;
+  margin: 20px 0;
+}
+
+.submit-container {
+  text-align: right;
+}
+
+.submit-button {
+  background-color: white;
+  padding: 6px 12px;
+  border: 1px solid;
+}
+
+.add-button:hover,
+.submit-button:hover {
   cursor: pointer;
-  background-color: #5e6572;
+  background-color: #555b6e;
   color: white;
 }
 
+.desc-box:focus,
+select:focus {
+  outline-color: #555b6e;
+  border: 2px solid;
+}
+
 /* color pallete:
+#ffd6ba  apricot
+#faf9f9  cultured
+#bee3db  coral sea
+#89b0ae  morning blue
+#555b6e  independence
+
 EEF1EF   cultured
 A9B4C2   cadet blue crayola
 5E6572   black coral
 7D98A1   pewter blue
-1C2321   dark jungle green */
+1C2321   dark jungle green
+*/
