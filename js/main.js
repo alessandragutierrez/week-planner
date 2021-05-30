@@ -16,6 +16,7 @@ function changeDay(event) {
     return;
   }
   var day = event.target.getAttribute('data-day');
+  data.view = day;
   var dayCap = day.charAt(0).toUpperCase() + day.slice(1);
   $scheduleDay.textContent = 'Scheduled events for ' + dayCap;
 }

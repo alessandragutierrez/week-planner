@@ -12,7 +12,7 @@ var data = {
   },
   nextEntryId: 1,
   edit: null,
-  currentDay: null
+  view: 'monday'
 };
 
 var previousDataJSON = localStorage.getItem('calendar-data');
