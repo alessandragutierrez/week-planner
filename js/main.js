@@ -121,6 +121,7 @@ function changeDay(event) {
   }
   changeDayTitle(event);
   changeTable(event);
+  updateFormDayToView();
 }
 
 function changeDayTitle(event) {
@@ -191,4 +192,11 @@ function addEntryToPage() {
 
 function closeModal() {
   $modal.classList.add('hidden');
+}
+
+//
+
+function updateFormDayToView() {
+  var view = data.view;
+  $entryForm.elements.day.value = view;
 }
