@@ -30,6 +30,7 @@ function renderEntry(newEntry) {
 }
 
 function addEntriesToPage() {
+  stayOnCurrentView();
   for (var key in data.entries) {
     for (var j = 0; j < $tables.length; j++) {
       var day = $tables[j].getAttribute('data-day');
@@ -46,6 +47,19 @@ function addEntriesToPage() {
   }
 }
 
+function stayOnCurrentView() {
+  var view = data.view;
+  for (i = 0; i < $tables.length; i++) {
+    if ($tables[i].getAttribute('data-day') !== view) {
+      $tables[i].classList.add('hidden');
+    } else {
+      $tables[i].classList.remove('hidden');
+    }
+  }
+  var dayCap = view.charAt(0).toUpperCase() + view.slice(1);
+  $dayTitle.textContent = 'Scheduled events for ' + dayCap;
+}
+
 function chronologicallyOrganizeEntries(key) {
   var amEntries = [];
   var pmEntries = [];
@@ -57,15 +71,18 @@ function chronologicallyOrganizeEntries(key) {
     }
   }
   entriesOrganized = [];
-
-  sort(amEntries);
-  sort(pmEntries);
-
-  for (i = 0; i < amEntries.length; i++) {
-    entriesOrganized.push(amEntries[i]);
+  if (amEntries[0] !== undefined) {
+    sort(amEntries);
+    for (i = 0; i < amEntries.length; i++) {
+      entriesOrganized.push(amEntries[i]);
+    }
   }
-  for (i = 0; i < pmEntries.length; i++) {
-    entriesOrganized.push(pmEntries[i]);
+
+  if (pmEntries[0] !== undefined) {
+    sort(pmEntries);
+    for (i = 0; i < pmEntries.length; i++) {
+      entriesOrganized.push(pmEntries[i]);
+    }
   }
 }
 
