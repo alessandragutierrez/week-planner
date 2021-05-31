@@ -40,12 +40,20 @@ function renderEntry(newEntry) {
   var $tr = document.createElement('tr');
   var $tdTime = document.createElement('td');
   var $tdDesc = document.createElement('td');
+  var $updateButtonContainer = document.createElement('td');
+  var $updateButton = document.createElement('button');
+
+  $updateButtonContainer.className = 'update-button-container';
+  $updateButton.className = 'update-button';
+  $updateButton.textContent = 'Update';
 
   $tdTime.textContent = newEntry.hour + ' ' + newEntry.AMPM.toUpperCase();
   $tdDesc.textContent = newEntry.desc;
 
   $tr.appendChild($tdTime);
   $tr.appendChild($tdDesc);
+  $tr.appendChild($updateButtonContainer);
+  $updateButtonContainer.appendChild($updateButton);
 
   return $tr;
 }

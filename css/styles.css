@@ -41,7 +41,7 @@ table td {
 
 table th:nth-child(1),
 table td:nth-child(1) {
-  width: 10rem;
+  width: 7rem;
   border-right: 2px solid #555b6e;
 }
 
@@ -119,4 +119,14 @@ select:focus {
 
 .margin-bottom {
   margin-bottom: 1.5rem;
+}
+
+.update-button-container {
+  padding: 0 1rem;
+}
+
+.update-button {
+  padding: 4px 8px;
+  background-color: #7796cb;
+  color: white;
 }
