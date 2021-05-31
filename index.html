@@ -13,12 +13,102 @@
   <div class="container">
     <div class="row">
       <div class="column-full">
-        <h1 class="center title">Weekly Planner</h1>
+        <h1 class="center margin-bottom">Weekly Planner</h1>
       </div>
     </div>
     <div class="row">
-      <div class="column-full center">
+      <div class="column-full day-button-container center margin-bottom">
+        <button data-day="monday" class="day-button">Monday</button>
+        <button data-day="tuesday" class="day-button">Tuesday</button>
+        <button data-day="wednesday" class="day-button">Wednesday</button>
+        <button data-day="thursday" class="day-button">Thursday</button>
+        <button data-day="friday" class="day-button">Friday</button>
+        <button data-day="saturday" class="day-button">Saturday</button>
+        <button data-day="sunday" class="day-button">Sunday</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="column-full center margin-bottom">
         <button class="add-button">Add Entry</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="column-full">
+        <h2 class="day-title center margin-bottom">Scheduled events for Monday</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="column-full">
+        <table data-day="monday" class="">
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+        <table data-day="tuesday" class="hidden">
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+        <table data-day="wednesday" class="hidden">
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+        <table data-day="thursday" class="hidden">
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+        <table data-day="friday" class="hidden">
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+        <table data-day="saturday" class="hidden">
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
+        <table data-day="sunday" class="hidden">
+          <thead>
+            <tr>
+              <th>Time</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
@@ -31,7 +121,7 @@
       </div>
       <div class="row">
         <div class="column-full selects">
-          <select name="day">
+          <select name="day" class="select">
             <option value="monday">Monday</option>
             <option value="tuesday">Tuesday</option>
             <option value="wednesday">Wednesday</option>
@@ -40,7 +130,8 @@
             <option value="saturday">Saturday</option>
             <option value="sunday">Sunday</option>
           </select>
-          <select name="hour">
+          <select name="hour" class="select">
+            <option value="12">12</option>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -52,7 +143,6 @@
             <option value="9">9</option>
             <option value="10">10</option>
             <option value="11">11</option>
-            <option value="12">12</option>
           </select>
           <input type="radio" name="AMPM" value="am">
           <label for="AMPM">AM</label>
