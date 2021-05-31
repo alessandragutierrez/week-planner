@@ -9,11 +9,32 @@ var newEntry;
 var entriesOrganized;
 var i;
 
-window.addEventListener('DOMContentLoaded', addEntriesToPage);
-document.addEventListener('click', changeDay);
+window.addEventListener('DOMContentLoaded', function (event) {
+  addEntriesToPage();
+  stayOnCurrentView();
+  resetFormValues();
+});
+
+document.addEventListener('click', function (event) {
+  if (event.target.matches('.day-button') !== true) {
+    return;
+  }
+  changeDayTitle(event);
+  changeTable(event);
+  resetFormValues();
+});
+
+$entryForm.addEventListener('submit', function (event) {
+  event.preventDefault();
+  saveEntry();
+  addEntryToPage();
+  closeModal();
+  resetFormValues();
+  data.nextEntryId = data.nextEntryId + 1;
+});
+
 $addButton.addEventListener('click', openModal);
 $modal.addEventListener('click', cancelOpenModal);
-$entryForm.addEventListener('submit', submitEntry);
 
 function renderEntry(newEntry) {
   var $tr = document.createElement('tr');
@@ -30,7 +51,6 @@ function renderEntry(newEntry) {
 }
 
 function addEntriesToPage() {
-  stayOnCurrentView();
   for (var key in data.entries) {
     for (var j = 0; j < $tables.length; j++) {
       var day = $tables[j].getAttribute('data-day');
@@ -77,7 +97,6 @@ function chronologicallyOrganizeEntries(key) {
       entriesOrganized.push(amEntries[i]);
     }
   }
-
   if (pmEntries[0] !== undefined) {
     sort(pmEntries);
     for (i = 0; i < pmEntries.length; i++) {
@@ -115,15 +134,6 @@ function moveTwelvesToStart(arrayX) {
   return arrayX;
 }
 
-function changeDay(event) {
-  if (event.target.matches('.day-button') !== true) {
-    return;
-  }
-  changeDayTitle(event);
-  changeTable(event);
-  updateFormDayToView();
-}
-
 function changeDayTitle(event) {
   var day = event.target.getAttribute('data-day');
   data.view = day;
@@ -140,24 +150,6 @@ function changeTable(event) {
       $tables[i].classList.remove('hidden');
     }
   }
-}
-
-function openModal(event) {
-  $modal.classList.remove('hidden');
-}
-
-function cancelOpenModal(event) {
-  if (event.target.matches('.modal') === true) {
-    $modal.classList.add('hidden');
-  }
-}
-
-function submitEntry(event) {
-  event.preventDefault();
-  saveEntry();
-  addEntryToPage();
-  closeModal();
-  data.nextEntryId = data.nextEntryId + 1;
 }
 
 function saveEntry() {
@@ -194,9 +186,18 @@ function closeModal() {
   $modal.classList.add('hidden');
 }
 
-//
+function openModal(event) {
+  $modal.classList.remove('hidden');
+}
 
-function updateFormDayToView() {
-  var view = data.view;
-  $entryForm.elements.day.value = view;
+function cancelOpenModal(event) {
+  if (event.target.matches('.modal') === true) {
+    $modal.classList.add('hidden');
+  }
+}
+
+function resetFormValues() {
+  $entryForm.elements.desc.value = '';
+  $entryForm.elements.hour.value = '12';
+  $entryForm.elements.day.value = data.view;
 }
