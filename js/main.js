@@ -101,10 +101,12 @@ function addEntriesToPage() {
     for (var j = 0; j < $tables.length; j++) {
       var day = $tables[j].getAttribute('data-day');
       if (key === day) {
-        chronologicallyOrganizeEntries(key);
-        for (i = 0; i < entriesOrganized.length; i++) {
-          var entryValues = renderEntry(entriesOrganized[i]);
-          $tables[j].lastElementChild.appendChild(entryValues);
+        if (data.entries[key].length > 0) {
+          chronologicallyOrganizeEntries(key);
+          for (i = 0; i < entriesOrganized.length; i++) {
+            var entryValues = renderEntry(entriesOrganized[i]);
+            $tables[j].lastElementChild.appendChild(entryValues);
+          }
         }
       }
     }
@@ -122,17 +124,15 @@ function chronologicallyOrganizeEntries(key) {
     }
   }
   entriesOrganized = [];
+
   sort(amEntries);
   sort(pmEntries);
-  if (amEntries[0] !== undefined) {
-    for (i = 0; i < amEntries.length; i++) {
-      entriesOrganized.push(amEntries[i]);
-    }
+
+  for (i = 0; i < amEntries.length; i++) {
+    entriesOrganized.push(amEntries[i]);
   }
-  if (pmEntries[0] !== undefined) {
-    for (i = 0; i < pmEntries.length; i++) {
-      entriesOrganized.push(pmEntries[i]);
-    }
+  for (i = 0; i < pmEntries.length; i++) {
+    entriesOrganized.push(pmEntries[i]);
   }
 }
 
@@ -150,5 +150,17 @@ function sort(arrayX) {
   value = arrayX[0];
   arrayX.splice(0, 1);
   arrayX.push(value);
+  moveTwelvesToStart(arrayX);
+  return arrayX;
+}
+
+function moveTwelvesToStart(arrayX) {
+  for (i = 0; i < arrayX.length; i++) {
+    if (parseInt(arrayX[i].hour) === 12) {
+      var value = arrayX[i];
+      arrayX.splice(i, 1);
+      arrayX.unshift(value);
+    }
+  }
   return arrayX;
 }
